@@ -1,0 +1,2286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Diary for You ❤️</title>
+<style>
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  header {
+    background: linear-gradient(90deg, #ff69b4, #ff1493);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    animation: fadeDown 1s ease;
+  }
+
+  header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+
+  header p {
+    font-size: 1.2em;
+    opacity: 0.9;
+  }
+
+  main {
+    padding: 30px 20px;
+    max-width: 900px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+
+  .entry {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeUp 0.8s ease;
+  }
+
+  .entry:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  }
+
+  .entry h2 {
+    margin-bottom: 10px;
+    color: #c71585;
+    font-size: 1.4em;
+    border-bottom: 2px solid #ff69b4;
+    padding-bottom: 5px;
+  }
+
+  .entry p {
+    margin: 8px 0;
+    line-height: 1.6;
+  }
+
+  .entry strong {
+    color: #ff1493;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  footer {
+    margin-top: 40px;
+    padding: 25px 20px;
+    text-align: center;
+    background: linear-gradient(90deg, #ff1493, #c71585, #ff69b4);
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  footer p {
+    margin-bottom: 15px;
+    animation: fadeIn 2s ease;
+  }
+
+  footer .hearts {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  footer .hearts span {
+    font-size: 1.5em;
+    animation: float 3s infinite ease-in-out;
+  }
+
+  footer .hearts span:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  footer .hearts span:nth-child(3) {
+    animation-delay: 1s;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translateY(-10px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  footer:hover {
+    background: linear-gradient(90deg, #ff69b4, #ff1493, #c71585);
+    letter-spacing: 1px;
+    transition: all 0.4s ease-in-out;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>My Diary for You ❤️</h1>
+  <p>Starting September 1, 2025</p>
+</header>
+
+<main id="diary">
+  <!-- Diary entries will be injected here -->
+</main>
+
+<script>
+  // Function to generate dates from today to next year
+  function generateDates(startDate, endDate) {
+    let dates = [];
+    let current = new Date(startDate);
+    while (current <= endDate) {
+      dates.push(new Date(current));
+      current.setDate(current.getDate() + 1);
+    }
+    return dates;
+  }
+
+  const startDate = new Date('2025-09-01');
+  const endDate = new Date('2026-09-01');
+  const allDates = generateDates(startDate, endDate);
+
+  const diaryContainer = document.getElementById('diary');
+
+  allDates.forEach((date, index) => {
+    const entryDiv = document.createElement('div');
+    entryDiv.className = 'entry';
+
+    // Format date nicely
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = date.toLocaleDateString('en-US', options);
+
+    let thought, memory, reason;
+    if (index === 0) {
+      thought = "Today I thought about how deeply I love you, more than words can ever express and how grateful I am to have you in my life.";
+      memory = "Every moment with you feels magical and unforgettable.";
+      reason = "You are the most precious part of my life, and I love you endlessly. Today was your birthday and I was so happy for you.";
+    } else if(index === 1) {
+      thought = "Today I thought about how your smile lights up my world.";  
+      memory = "I cherish the laughter we share and the joy you bring.";
+      reason = "Your happiness is my happiness, and I love you for it.";
+    } else if(index === 2) {
+      thought = "Your smile is the best thing in this cruel world which can cure a broken heart.";
+      memory = "I remember the first time you smiled at me, it was the cutest thing ever even though you were just my friend.";
+      reason = "Your smile has the power to heal and bring joy to my life.";
+    } else if(index === 3) {
+      thought = "I thought about how your kindness and compassion inspire me every day.";
+      memory = "I remember the time you helped a stranger in need, it showed me the depth of your beautiful heart.";
+      reason = "Your empathy and love for others make me love you even more.";
+    } else if(index === 4) {
+      thought = "Today I thought about how much I look forward to our future together.";
+      memory = "I cherish all the moments we've shared and can't wait to create more memories with you.";
+      reason = "You are my everything, and I love you more with each passing day.";
+    }
+    else if(index ==5){
+      thought="I thought about how your presence in  my life has brought "
+      memory="I remember how our everyday conversations make me feel special and loved."
+      reason="Your love and support mean the world to me and I love you deeply"
+    }
+    else if(index == 6){
+      thought="I thought about how your laughter is the sweetest sound to my ears."
+      memory="I remember the time we laughed so hard together that our stomachs hurt. (this happened back in 2021, October)"
+      reason="Your joy and happiness are contagious, and I love you for it."
+    }
+    else if(index ==7){
+      thought = "Today I thought about how much I love you and appreciate you.";
+      memory = "I cherish all the moments we've shared together and still sharing.";
+      reason = "You are my everything, and I love you more with each passing day.";
+    }
+    else if(index ==8){
+      thought = "I thought about how your love has transformed my life in the most beautiful way.";
+      memory = "I remember the first time we met, and how I felt an instant connection with you. (2nd of September, 2021)";
+      reason = "Your love has made me a better person, and I am forever grateful for you.";
+    }
+    else if(index ==9){ 
+      thought = "Today I thought about how much I love you and appreciate you.";
+      memory = "I cherish all the moments we've shared together and still sharing.";
+      reason = "You are my everything, and I love you more with each passing day.";
+    }
+ else if(index == 10){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 11){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 12){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 13){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 14){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 15){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 16){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 17){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 18){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 19){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 20){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 21){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 22){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 23){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 24){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 25){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 26){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 27){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 28){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 29){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 30){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 10){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 11){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 12){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 13){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 14){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 15){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 16){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 17){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 18){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 19){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 20){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 21){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 22){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 23){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 24){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 25){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 26){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 27){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 28){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 29){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 30){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 31){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 32){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 33){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 34){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 35){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 36){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 37){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 38){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 39){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 40){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 41){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 42){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 43){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 44){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 45){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 46){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 47){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 48){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 49){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 50){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 51){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 52){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 53){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 54){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 55){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 56){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 57){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 58){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 59){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 60){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 61){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 62){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 63){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 64){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 65){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 66){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 67){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 68){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 69){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 70){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 71){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 72){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 73){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 74){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 75){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 76){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 77){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 78){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 79){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 80){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 81){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 82){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 83){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 84){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 85){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 86){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 87){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 88){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 89){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 90){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 91){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 92){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 93){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 94){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 95){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 96){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 97){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 98){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 99){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 100){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 100){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 101){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 102){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 103){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 104){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 105){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 106){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 107){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 108){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 109){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 110){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 111){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 112){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 113){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 114){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 115){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 116){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 117){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 118){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 119){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 120){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 121){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 122){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 123){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 124){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 125){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 126){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 127){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 128){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 129){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 130){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 131){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 132){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 133){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 134){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 135){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 136){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 137){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 138){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 139){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 140){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 141){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 142){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 143){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 144){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 145){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 146){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 147){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 148){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 149){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 150){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 151){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 152){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 153){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 154){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 155){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 156){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 157){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 158){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 159){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 160){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 161){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 162){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 163){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 164){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 165){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 166){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 167){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 168){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 169){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 170){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 171){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 172){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 173){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 174){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 175){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 176){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 177){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 178){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 179){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 180){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 181){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 182){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 183){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 184){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 185){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 186){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 187){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 188){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 189){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 190){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 191){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 192){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 193){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 194){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 195){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 196){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 197){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 198){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 199){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 200){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 201){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 202){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 203){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 204){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 205){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 206){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 207){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 208){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 209){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 210){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 211){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 212){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 213){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 214){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 215){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 216){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 217){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 218){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 219){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 220){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 221){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 222){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 223){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 224){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 225){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 226){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 227){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 228){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 229){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 230){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 231){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 232){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 233){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 234){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 235){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 236){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 237){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 238){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 239){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 240){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 241){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 242){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 243){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 244){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 245){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 246){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 247){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 248){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 249){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 250){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 251){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 252){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 253){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 254){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 255){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 256){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 257){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 258){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 259){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 260){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 261){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 262){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 263){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 264){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 265){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 266){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 267){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 268){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 269){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 270){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 271){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 272){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 273){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 274){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 275){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 276){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 277){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 278){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 279){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 280){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 281){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 282){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 283){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 284){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 285){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 286){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 287){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 288){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 289){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 290){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 291){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 292){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 293){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 294){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 295){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 296){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 297){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 298){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 299){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 300){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 301){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 302){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 303){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 304){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 305){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 306){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 307){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 308){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 309){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 310){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 311){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 312){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 313){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 314){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 315){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 316){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 317){
+  thought=""
+  memory=""
+  reason=""
+
+}
+else if(index == 318){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 319){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 320){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 321){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 322){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 323){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 324){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 325){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 326){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 327){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 328){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 329){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 330){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 331){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 332){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 333){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 334){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 335){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 336){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 337){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 338){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 339){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 340){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 341){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 341){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 342){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 343){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+
+else if(index == 344){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 345){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 346){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 347){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 348){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 349){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+
+else if(index == 350){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 351){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 352){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 353){
+  thought=""
+  memory=""
+  reason=""
+
+}
+
+
+else if(index == 354){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 355){
+  thought=""
+  memory=""
+  reason=""
+}
+
+else if(index == 355){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 356){
+  thought=""
+  memory=""
+  reason=""
+}
+
+
+else if(index == 356){
+  thought=""
+  memory=""
+  reason=""
+}
+
+
+else if(index == 357){
+  thought=""
+  memory=""
+  reason=""
+}
+
+
+
+else if(index == 358){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 359){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 360){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 361){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 362){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 363){
+  thought=""
+  memory=""
+  reason=""
+}
+else if(index == 364){
+  thought=""
+  memory=""
+  reason=""
+}
+
+    entryDiv.innerHTML = `
+      <h2>${formattedDate}</h2>
+      <p><strong>Thought of the Day:</strong> ${thought}</p>
+      <p><strong>Memory/Story:</strong> ${memory}</p>
+      <p><strong>Reason I Love You Today:</strong> ${reason}</p>
+    `;
+
+    diaryContainer.appendChild(entryDiv);
+  });
+</script>
+</body>
+</html>
