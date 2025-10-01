@@ -2176,6 +2176,26 @@ else if(index == 364){
 
     diaryContainer.appendChild(entryDiv);
   });
+function updateWordCount() {
+  const entries = document.querySelectorAll('.entry');
+  entries.forEach(entry => {
+    const text = entry.innerText || entry.textContent;
+    const wordCount = countWords(text);
+
+    if (wordCount > 0) {   // ✅ Only show if something is written
+      let counter = entry.querySelector('.word-counter');
+      if (!counter) {
+        counter = document.createElement('p');
+        counter.className = 'word-counter';
+        counter.style.fontSize = "0.9em";
+        counter.style.color = "#555";
+        counter.style.marginTop = "10px";
+        entry.appendChild(counter);
+      }
+      counter.textContent = `Word Count: ${wordCount}`;
+    }
+  });
+}
 </script>
 </body>
 </html>
